@@ -27,7 +27,8 @@ defmodule Alphavantagex.MixProject do
       {:tesla, "~> 1.0"},
       {:jason, "~> 1.0"},
       {:csv, "~> 2.0"},
-      {:nimble_csv, "~> 0.1"}
+      {:nimble_csv, "~> 0.1"},
+      {:map_keys, "~> 0.1"},
     ]
   end
 end

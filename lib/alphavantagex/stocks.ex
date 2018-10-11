@@ -12,7 +12,10 @@ defmodule Alphavantagex.Stocks do
       )
 
     with {:ok, tesla_env} <- result do
-      body = parse_csv(tesla_env.body)
+      body =
+        tesla_env.body
+        |> parse_csv()
+        |> Enum.map(&MapKeys.to_atoms_unsafe!/1)
 
       tesla_env = Map.put(tesla_env, :body, body)
       {:ok, tesla_env}
@@ -26,5 +29,4 @@ defmodule Alphavantagex.Stocks do
     |> CSV.decode!(headers: true)
     |> Enum.to_list()
   end
-
 end
