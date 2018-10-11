@@ -9,8 +9,12 @@ defmodule Alphavantagex do
   """
   @spec client(list(), list()) :: Tesla.Env.client()
   def client(pre \\ [], post \\ []) do
+    api_key = Application.get_env(:alphavantagex, :api_key)
     Tesla.build_client(
-      [{Tesla.Middleware.BaseUrl, @url}] ++ pre,
+      [
+        {Tesla.Middleware.BaseUrl, @url},
+        {Tesla.Middleware.Query, [apikey: api_key]}
+      ] ++ pre,
       [{Tesla.Middleware.JSON, []}] ++ post
     )
   end
