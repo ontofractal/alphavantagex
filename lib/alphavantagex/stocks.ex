@@ -3,6 +3,21 @@ defmodule Alphavantagex.Stocks do
 
   use Tesla, docs: false, only: ~w(get)a
 
+  @doc """
+  Response Body is a list of maps with the following shape
+
+  %{
+     adjusted_close: _,
+     close: _,
+     dividend_amount: _,
+     high: _,
+     low: _,
+     open: _,
+     split_coefficient: _,
+     timestamp: _,
+     volume: _
+   }
+  """
   def fetch_ts_daily_adj(symbol) do
     client = Alphavantagex.client()
 
