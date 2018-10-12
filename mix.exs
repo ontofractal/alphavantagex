@@ -29,6 +29,7 @@ defmodule Alphavantagex.MixProject do
       {:csv, "~> 2.0"},
       {:nimble_csv, "~> 0.1"},
       {:map_keys, "~> 0.1"},
+      {:construct, "~> 1.0"}
     ]
   end
 end

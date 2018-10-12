@@ -1,5 +1,6 @@
 %{
   "atomic_map": {:hex, :atomic_map, "0.9.3", "3c7f1302e0590164732d08ca999708efbb2cd768abf2911cf140280ce2dc499d", [:mix], [], "hexpm"},
+  "construct": {:hex, :construct, "1.2.1", "dc2f6e802a620d3775abc8d4ee2293002279c5574a3e133583ee0c7dae2fb3c5", [:mix], [], "hexpm"},
   "csv": {:hex, :csv, "2.1.1", "a4c1a7c30d2151b6e4976cb2f52c0a1d49ec965afb737ed84a684bc4284d1627", [:mix], [{:parallel_stream, "~> 1.0.4", [hex: :parallel_stream, repo: "hexpm", optional: false]}], "hexpm"},
   "jason": {:hex, :jason, "1.1.1", "d3ccb840dfb06f2f90a6d335b536dd074db748b3e7f5b11ab61d239506585eb2", [:mix], [{:decimal, "~> 1.0", [hex: :decimal, repo: "hexpm", optional: true]}], "hexpm"},
   "key_tools": {:hex, :key_tools, "0.4.1", "4bdf5a39190dc465e58f0c44784b7bb5300bafbbfff2b4ada4d7ec3bfde8d470", [:mix], [], "hexpm"},
