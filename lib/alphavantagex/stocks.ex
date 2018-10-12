@@ -5,6 +5,13 @@ defmodule Alphavantagex.Stocks do
   use Tesla, docs: false, only: ~w(get)a
 
   @doc """
+  Fetches adjusted daily timeseries for give symbol
+
+  Arguments:
+
+  - symbol: "AAPL", "TSLA" or other stock symbol
+  - options: [output_size: "full" | "compact"] use compact to limit result length to 100 items
+
   Response Body is a list of %AdjOHLHCV{} structs
 
   ```
@@ -22,12 +29,17 @@ defmodule Alphavantagex.Stocks do
    }
   ```
   """
-  def fetch_ts_daily_adj(symbol) do
+  def fetch_ts_daily_adj(symbol, options \\ []) do
     client = Alphavantagex.client()
 
     result =
       get(client, "/",
-        query: [function: "TIME_SERIES_DAILY_ADJUSTED", symbol: symbol, datatype: "csv"]
+        query: [
+          function: "TIME_SERIES_DAILY_ADJUSTED",
+          symbol: symbol,
+          datatype: "csv",
+          outputsize: options[:output_size] || "full"
+        ]
       )
 
     with {:ok, tesla_env} <- result do
