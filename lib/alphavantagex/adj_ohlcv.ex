@@ -1,4 +1,4 @@
-defmodule Alphavantagex.AdjOHLHCV do
+defmodule Alphavantagex.AdjOHLCV do
   use Construct do
     field :adjusted_close, :float
     field :close, :float
@@ -15,16 +15,17 @@ defmodule Alphavantagex.AdjOHLHCV do
   def parse!(raw) do
     raw
     |> Map.update!(:timestamp, &datestring_to_timestamp/1)
+    |> Map.put_new(:datetime, raw.timestamp)
     |> Map.update!(:datetime, &datestring_to_ndt/1)
   end
 
-  def datestring_to_timestamp(str) do
+  defp datestring_to_timestamp(str) do
     str
     |> Date.from_iso8601!()
     |> Timex.to_unix()
   end
 
-  def datestring_to_ndt(str) do
+  defp datestring_to_ndt(str) do
     str
     |> Date.from_iso8601!()
     |> Timex.to_datetime()

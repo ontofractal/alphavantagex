@@ -1,14 +1,14 @@
 defmodule Alphavantagex.Stocks do
   alias NimbleCSV.RFC4180, as: NimbleCSV
-  alias Alphavantagex.AdjOHLHCV
+  alias Alphavantagex.AdjOHLCV
 
   use Tesla, docs: false, only: ~w(get)a
 
   @doc """
-  Response Body is a list of maps with the following shape
+  Response Body is a list of %AdjOHLHCV{} structs
 
   ```
-  %{
+  %AdjOHLHCV{
      adjusted_close: _,
      close: _,
      dividend_amount: _,
@@ -17,6 +17,7 @@ defmodule Alphavantagex.Stocks do
      open: _,
      split_coefficient: _,
      timestamp: _,
+     datetime: _,
      volume: _
    }
   ```
@@ -34,8 +35,8 @@ defmodule Alphavantagex.Stocks do
         tesla_env.body
         |> parse_csv()
         |> Enum.map(&MapKeys.to_atoms_unsafe!/1)
-        |> Enum.map(&AdjOHLHCV.parse!/1)
-        |> Enum.map(&AdjOHLHCV.make!/1)
+        |> Enum.map(&AdjOHLCV.parse!/1)
+        |> Enum.map(&AdjOHLCV.make!/1)
 
       tesla_env = Map.put(tesla_env, :body, body)
       {:ok, tesla_env}
